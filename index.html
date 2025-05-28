@@ -14,31 +14,32 @@
       color: #fff;
     }
 
-    .cliente-card img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;
-      border: 3px solid #ccc; /* opcional, para borde */
-    }
-
     .clientes-carousel {
       overflow: hidden;
-      width: 100px;
-      position: relative;
+      width: 100%;
     }
 
     .clientes-track {
       display: flex;
-      transition: transform 1s ease-in-out;
-      width: max-content; /* Permite que el track sea lo suficientemente ancho */
+      transition: transform 0.5s ease;
     }
 
     .cliente-card {
-      flex: 0 0 25%; /* Muestra 4 tarjetas a la vez (100% / 4) */
+      flex: 0 0 25%; /* 4 tarjetas visibles */
       box-sizing: border-box;
       padding: 10px;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .cliente-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      margin-bottom: 10px;
     }
 
 
@@ -354,19 +355,19 @@
     <h2 class="text-center fw-bold mb-5 fade-slide" data-delay="1">Nuestros Clientes</h2>
     <div class="clientes-carousel">
       <div class="clientes-track">
-        <div class="cliente-card fade-slide" data-delay="2">
+        <div class="cliente-card">
           <img src="img/cliente/img1.png" alt="Ferretería El Constructor">
           <p>Ferretería El Constructor</p>
         </div>
-        <div class="cliente-card fade-slide" data-delay="3">
+        <div class="cliente-card">
           <img src="img/cliente/img2.png" alt="Panadería San Juan">
           <p>Panadería San Juan</p>
         </div>
-        <div class="cliente-card fade-slide" data-delay="4">
+        <div class="cliente-card">
           <img src="img/cliente/img3.png" alt="Supermercado La Estrella">
           <p>Supermercado La Estrella</p>
         </div>
-        <div class="cliente-card fade-slide" data-delay="2">
+        <div class="cliente-card">
           <img src="img/cliente/img4.png" alt="Café Delicia">
           <p>Café Delicia</p>
         </div>
@@ -496,62 +497,44 @@
 
     // Carrusel de clientes
 
-  const clientesTrack = document.querySelector('.clientes-track');
-    const clientesOriginales = Array.from(document.querySelectorAll('.cliente-card'));
-    const totalClientesOriginales = clientesOriginales.length;
-    let currentClient = 0;
-    let clientInterval;
+   const track = document.querySelector('.clientes-track');
+  const interval = 3000; // tiempo entre movimientos
+  let clientInterval;
 
-    // Duplicar las tarjetas varias veces para un desplazamiento suave
-    // Duplicamos 3 veces para tener suficientes tarjetas y evitar notar el reinicio
-    for (let i = 0; i < 3; i++) {
-      clientesOriginales.forEach(cliente => {
-        const clon = cliente.cloneNode(true);
-        clientesTrack.appendChild(clon);
-      });
-    }
+  function rotateClientes() {
+    const firstCard = track.querySelector('.cliente-card');
 
-    // Obtener todas las tarjetas (originales + duplicadas)
-    const todasLasTarjetas = document.querySelectorAll('.cliente-card');
-    const totalTarjetas = todasLasTarjetas.length;
+    // Clonar la primera tarjeta
+    const clone = firstCard.cloneNode(true);
 
-    function updateClientes() {
-      // Calcular el desplazamiento basado en el ancho de cada tarjeta
-      const cardWidth = 100 / 4; // 4 tarjetas visibles a la vez
-      const offset = currentClient * cardWidth;
+    // Mover el track hacia la izquierda
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = 'translateX(-25%)';
 
-      clientesTrack.style.transform = `translateX(-${offset}%)`;
+    // Luego de la transición, reiniciar y reordenar
+    setTimeout(() => {
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
 
-      // Si llegamos cerca del final de las tarjetas duplicadas, reiniciamos al inicio
-      if (currentClient >= totalClientesOriginales * 2) {
-        setTimeout(() => {
-          clientesTrack.style.transition = 'none'; // Desactivar transición para evitar parpadeo
-          currentClient = 0; // Volver al inicio
-          clientesTrack.style.transform = `translateX(0%)`;
-          setTimeout(() => {
-            clientesTrack.style.transition = 'transform 1s ease-in-out'; // Reactivar transición
-          }, 50); // Pequeña espera para asegurar el cambio
-        }, 1000); // Esperar a que termine la transición actual
-      }
-    }
+      track.appendChild(clone);      // Agrega el clon al final
+      firstCard.remove();            // Elimina la original del inicio
+    }, 500);
+  }
 
-    function startClientesCarousel() {
-      clientInterval = setInterval(() => {
-        currentClient++;
-        updateClientes();
-      }, 3000); // Cambia cada 3 segundos
-    }
+  function startClientesCarousel() {
+    clientInterval = setInterval(rotateClientes, interval);
+  }
 
-    function stopClientesCarousel() {
-      clearInterval(clientInterval);
-    }
+  function stopClientesCarousel() {
+    clearInterval(clientInterval);
+  }
 
-    // Eventos para pausar/reanudar el carrusel
-    document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
-    document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
+  // Detener al pasar el mouse
+  document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
+  document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
 
-    // Iniciar el carrusel
-    startClientesCarousel();
+  // Iniciar carrusel
+  startClientesCarousel();
     updateSlide();
   </script>
 
