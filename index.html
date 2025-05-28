@@ -23,6 +23,24 @@
       border: 3px solid #ccc; /* opcional, para borde */
     }
 
+    .clientes-carousel {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .clientes-track {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      width: max-content; /* Permite que el track sea lo suficientemente ancho */
+    }
+
+    .cliente-card {
+      flex: 0 0 25%; /* Muestra 4 tarjetas a la vez (100% / 4) */
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
 
     section, header, footer {
       min-height: 100vh;
@@ -478,33 +496,42 @@
 
     // Carrusel de clientes
 
-    const clientesTrack = document.querySelector('.clientes-track');
+  const clientesTrack = document.querySelector('.clientes-track');
     const clientesOriginales = Array.from(document.querySelectorAll('.cliente-card'));
-
-    // Duplicar automáticamente los cliente-card
-    clientesOriginales.forEach(cliente => {
-      const clon = cliente.cloneNode(true); // Clona con contenido
-      clientesTrack.appendChild(clon); // Agrega el clon
-    });
-
+    const totalClientesOriginales = clientesOriginales.length;
     let currentClient = 0;
-    const totalClientes = clientesOriginales.length; // Solo contar los originales
     let clientInterval;
 
+    // Duplicar las tarjetas varias veces para un desplazamiento suave
+    // Duplicamos 3 veces para tener suficientes tarjetas y evitar notar el reinicio
+    for (let i = 0; i < 3; i++) {
+      clientesOriginales.forEach(cliente => {
+        const clon = cliente.cloneNode(true);
+        clientesTrack.appendChild(clon);
+      });
+    }
+
+    // Obtener todas las tarjetas (originales + duplicadas)
+    const todasLasTarjetas = document.querySelectorAll('.cliente-card');
+    const totalTarjetas = todasLasTarjetas.length;
+
     function updateClientes() {
-      const offset = currentClient * (100 / 4); // 4 clientes visibles
+      // Calcular el desplazamiento basado en el ancho de cada tarjeta
+      const cardWidth = 100 / 4; // 4 tarjetas visibles a la vez
+      const offset = currentClient * cardWidth;
+
       clientesTrack.style.transform = `translateX(-${offset}%)`;
 
-      // Reinicio suave al llegar al final
-      if (currentClient >= totalClientes - 1) {
+      // Si llegamos cerca del final de las tarjetas duplicadas, reiniciamos al inicio
+      if (currentClient >= totalClientesOriginales * 2) {
         setTimeout(() => {
-          clientesTrack.style.transition = 'none';
-          currentClient = 0;
+          clientesTrack.style.transition = 'none'; // Desactivar transición para evitar parpadeo
+          currentClient = 0; // Volver al inicio
           clientesTrack.style.transform = `translateX(0%)`;
           setTimeout(() => {
-            clientesTrack.style.transition = 'transform 1s ease-in-out';
-          }, 50);
-        }, 1000);
+            clientesTrack.style.transition = 'transform 1s ease-in-out'; // Reactivar transición
+          }, 50); // Pequeña espera para asegurar el cambio
+        }, 1000); // Esperar a que termine la transición actual
       }
     }
 
@@ -512,17 +539,18 @@
       clientInterval = setInterval(() => {
         currentClient++;
         updateClientes();
-      }, 3000);
+      }, 3000); // Cambia cada 3 segundos
     }
 
     function stopClientesCarousel() {
       clearInterval(clientInterval);
     }
 
+    // Eventos para pausar/reanudar el carrusel
     document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
     document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
 
-    // Iniciar carrusel y slider
+    // Iniciar el carrusel
     startClientesCarousel();
     updateSlide();
   </script>
