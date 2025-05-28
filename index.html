@@ -339,6 +339,7 @@
   .cliente-card p {
     font-size: 1.25rem; /* Título más grande en móvil */
   }
+  
 }
 /* Estilos para los modales */
 .modal-content {
@@ -416,6 +417,22 @@
   opacity: 1;
 }
 
+/* Estilo del navbar */
+.navbar {
+  background-color: #000 !important;
+  border-bottom: 1px solid #0dcaf0;
+}
+
+.navbar-brand, .nav-link {
+  color: #0dcaf0 !important;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.nav-link:hover {
+  color: #00bcd4 !important;
+}
+
+/* Overlay del menú */
 .menu-overlay {
   display: none;
   position: fixed;
@@ -424,12 +441,31 @@
   width: 100%;
   height: 100%;
   z-index: 1040; /* Justo por debajo del navbar y el colapsable */
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  cursor: pointer;
 }
 
 /* Se muestra solo cuando el navbar está expandido */
 .navbar-collapse.show ~ .menu-overlay {
   display: block;
+}
+
+/* Asegurar que el menú colapsable tenga un fondo y estilo en móvil */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: #111;
+    border-top: 1px solid #0dcaf0;
+    padding: 15px;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .nav-link {
+    padding: 10px 0 !important;
+    font-size: 1.1rem;
+  }
 }
 
 
@@ -831,20 +867,30 @@
 
     updateSlide();
 
+  </script>
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const navbarCollapse = document.getElementById("navbarNav");
-    const overlay = document.getElementById("menuOverlay");
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarToggler = document.querySelector(".navbar-toggler");
+  const navbarCollapse = document.getElementById("navbarNav");
 
-    overlay.addEventListener("click", function () {
-      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-      if (bsCollapse) {
+  // Cerrar el menú al hacer clic en cualquier parte de la página
+  document.addEventListener("click", function (event) {
+    // Solo en modo responsivo (cuando el botón hamburguesa es visible)
+    if (window.innerWidth <= 991) { // 991px es el punto de corte de Bootstrap para navbar-expand-lg
+      const isClickInsideMenu = navbarCollapse.contains(event.target);
+      const isClickOnToggler = navbarToggler.contains(event.target);
+
+      // Si el menú está abierto y el clic no está dentro del menú ni en el botón hamburguesa
+      if (navbarCollapse.classList.contains("show") && !isClickInsideMenu && !isClickOnToggler) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
         bsCollapse.hide();
       }
-    });
+    }
   });
-
-
+});
   </script>
 
 </body>
