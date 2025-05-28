@@ -497,44 +497,51 @@
 
     // Carrusel de clientes
 
-   const track = document.querySelector('.clientes-track');
-  const interval = 3000; // tiempo entre movimientos
-  let clientInterval;
+    const track = document.querySelector('.clientes-track');
+    const interval = 3000; // tiempo entre movimientos
+    let clientInterval;
 
-  function rotateClientes() {
-    const firstCard = track.querySelector('.cliente-card');
+    function rotateClientes() {
+      const firstCard = track.querySelector('.cliente-card');
+      const clone = firstCard.cloneNode(true);
 
-    // Clonar la primera tarjeta
-    const clone = firstCard.cloneNode(true);
+      // Agrega el clon al final antes de mover
+      track.appendChild(clone);
 
-    // Mover el track hacia la izquierda
-    track.style.transition = 'transform 0.5s ease';
-    track.style.transform = 'translateX(-25%)';
+      // Fuerza el navegador a aplicar el DOM antes del siguiente paso
+      void track.offsetWidth;
 
-    // Luego de la transición, reiniciar y reordenar
-    setTimeout(() => {
-      track.style.transition = 'none';
-      track.style.transform = 'translateX(0)';
+      // Desplazar
+      track.style.transition = 'transform 0.5s ease';
+      track.style.transform = 'translateX(-25%)';
 
-      track.appendChild(clone);      // Agrega el clon al final
-      firstCard.remove();            // Elimina la original del inicio
-    }, 500);
-  }
+      // Después de la transición
+      setTimeout(() => {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
 
-  function startClientesCarousel() {
-    clientInterval = setInterval(rotateClientes, interval);
-  }
+        firstCard.remove(); // Remover la primera tarjeta
 
-  function stopClientesCarousel() {
-    clearInterval(clientInterval);
-  }
+        // ⚠️ Forzar el redibujo para evitar glitches
+        void track.offsetWidth;
+      }, 500);
+    }
 
-  // Detener al pasar el mouse
-  document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
-  document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
+    function startClientesCarousel() {
+      clientInterval = setInterval(rotateClientes, interval);
+    }
 
-  // Iniciar carrusel
-  startClientesCarousel();
+    function stopClientesCarousel() {
+      clearInterval(clientInterval);
+    }
+
+    // Detener al pasar el mouse
+    document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
+    document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
+
+    // Iniciar carrusel
+    startClientesCarousel();
+
     updateSlide();
   </script>
 
