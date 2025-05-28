@@ -415,6 +415,24 @@
 .btn-close:hover {
   opacity: 1;
 }
+
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1040; /* Justo por debajo del navbar y el colapsable */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Se muestra solo cuando el navbar está expandido */
+.navbar-collapse.show ~ .menu-overlay {
+  display: block;
+}
+
+
   </style>
 </head>
 <body>
@@ -437,6 +455,8 @@
       </div>
     </div>
   </nav>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
 
   <!-- Hero -->
   <header class="hero d-flex align-items-center justify-content-center text-center" style="background-image: url('https://source.unsplash.com/1600x900/?technology,server');">
@@ -810,6 +830,21 @@
     startClientesCarousel();
 
     updateSlide();
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const navbarCollapse = document.getElementById("navbarNav");
+    const overlay = document.getElementById("menuOverlay");
+
+    overlay.addEventListener("click", function () {
+      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      }
+    });
+  });
+
+
   </script>
 
 </body>
