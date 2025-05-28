@@ -14,6 +14,16 @@
       color: #fff;
     }
 
+    .cliente-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 3px solid #ccc; /* opcional, para borde */
+    }
+
+
     section, header, footer {
       min-height: 100vh;
       display: flex;
@@ -327,7 +337,7 @@
     <div class="clientes-carousel">
       <div class="clientes-track">
         <div class="cliente-card fade-slide" data-delay="2">
-          <img src="https://source.unsplash.com/100x100/?store,retail" alt="Ferretería El Constructor">
+          <img src="img/cliente/img1.png" alt="Ferretería El Constructor">
           <p>Ferretería El Constructor</p>
         </div>
         <div class="cliente-card fade-slide" data-delay="3">
@@ -339,23 +349,6 @@
           <p>Supermercado La Estrella</p>
         </div>
         <div class="cliente-card fade-slide" data-delay="2">
-          <img src="https://source.unsplash.com/100x100/?restaurant,cafe" alt="Café Delicia">
-          <p>Café Delicia</p>
-        </div>
-        <!-- Duplicados para un carrusel infinito -->
-        <div class="cliente-card fade-slide" data-delay="3">
-          <img src="https://source.unsplash.com/100x100/?store,retail" alt="Ferretería El Constructor">
-          <p>Ferretería El Constructor</p>
-        </div>
-        <div class="cliente-card fade-slide" data-delay="4">
-          <img src="https://source.unsplash.com/100x100/?bakery,shop" alt="Panadería San Juan">
-          <p>Panadería San Juan</p>
-        </div>
-        <div class="cliente-card fade-slide" data-delay="2">
-          <img src="https://source.unsplash.com/100x100/?supermarket,retail" alt="Supermercado La Estrella">
-          <p>Supermercado La Estrella</p>
-        </div>
-        <div class="cliente-card fade-slide" data-delay="3">
           <img src="https://source.unsplash.com/100x100/?restaurant,cafe" alt="Café Delicia">
           <p>Café Delicia</p>
         </div>
@@ -484,9 +477,18 @@
     }
 
     // Carrusel de clientes
-    let currentClient = 0;
+
     const clientesTrack = document.querySelector('.clientes-track');
-    const totalClientes = document.querySelectorAll('.cliente-card').length / 2; // Dividido por 2 por los duplicados
+    const clientesOriginales = Array.from(document.querySelectorAll('.cliente-card'));
+
+    // Duplicar automáticamente los cliente-card
+    clientesOriginales.forEach(cliente => {
+      const clon = cliente.cloneNode(true); // Clona con contenido
+      clientesTrack.appendChild(clon); // Agrega el clon
+    });
+
+    let currentClient = 0;
+    const totalClientes = clientesOriginales.length; // Solo contar los originales
     let clientInterval;
 
     function updateClientes() {
@@ -520,9 +522,10 @@
     document.querySelector('.clientes-carousel').addEventListener('mouseenter', stopClientesCarousel);
     document.querySelector('.clientes-carousel').addEventListener('mouseleave', startClientesCarousel);
 
-    // Iniciar carrusel
+    // Iniciar carrusel y slider
     startClientesCarousel();
     updateSlide();
   </script>
+
 </body>
 </html>
