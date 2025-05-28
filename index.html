@@ -215,7 +215,7 @@
 .cliente-card {
   flex: 0 0 25%; /* 4 tarjetas visibles en escritorio */
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px; /* Padding base para escritorio */
   text-align: center;
   opacity: 1;
   cursor: pointer;
@@ -249,6 +249,8 @@
 .cliente-card p {
   font-family: 'Exo 2', sans-serif;
   color: #0dcaf0;
+  font-size: 1rem; /* Tamaño base para escritorio */
+  margin: 0;
 }
 
 /* Media query para modo móvil */
@@ -258,7 +260,6 @@
   }
 
   .clientes-track {
-    /* Asegura que el desplazamiento del carrusel sea suave */
     transition: transform 0.5s ease;
   }
 
@@ -266,9 +267,20 @@
     flex: 0 0 calc(100% - 20px); /* Resta el margen total (10px izquierda + 10px derecha) */
     min-width: calc(100% - 20px);
     margin: 0 10px; /* Margen simétrico: 10px a cada lado */
+    padding: 30px 20px; /* Más padding vertical para hacer la tarjeta más larga */
+    min-height: 300px; /* Altura mínima para que la tarjeta sea más larga */
+  }
+
+  .cliente-card img {
+    width: 120px; /* Logo más grande en móvil */
+    height: 120px;
+    margin-bottom: 15px; /* Más espacio debajo del logo */
+  }
+
+  .cliente-card p {
+    font-size: 1.25rem; /* Título más grande en móvil */
   }
 }
-
 /* Estilos para los modales */
 .modal-content {
   background-color: #000;
