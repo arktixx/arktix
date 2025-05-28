@@ -146,11 +146,9 @@
     }
 
     .slider-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: 1.5rem;
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 1rem;
       background: rgba(0, 0, 0, 0.8);
@@ -158,6 +156,7 @@
       border-radius: 25px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     }
+
 
     .slider-controls button {
       background: #0dcaf0;
@@ -390,7 +389,10 @@
           <img class="slide" src="img/img4.png" alt="Automatización">
         </div>
       </div>
-      <div class="slider-controls">
+      
+    </div>
+
+    <div class="slider-controls">
         <button onclick="prevSlide()">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -405,7 +407,6 @@
           </svg>
         </button>
       </div>
-    </div>
   </section>
 
   <!-- Contacto -->
