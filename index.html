@@ -253,8 +253,67 @@
   margin: 0;
 }
 
+.menu-toggle {
+  display: none; /* Oculto en escritorio */
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li a {
+  color: #0dcaf0;
+  text-decoration: none;
+  font-family: 'Exo 2', sans-serif;
+  margin: 0 15px;
+}
+
 /* Media query para modo móvil */
 @media (max-width: 576px) {
+  .menu-toggle {
+    display: block; /* Visible en móvil */
+  }
+
+  .menu {
+    display: none; /* Oculto por defecto en móvil */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #111;
+    border-right: 1px solid #0dcaf0;
+    padding-top: 60px;
+  }
+
+  .menu.active {
+    display: block; /* Mostrado cuando tiene la clase .active */
+  }
+
+  .menu ul {
+    flex-direction: column;
+  }
+
+  .menu ul li a {
+    display: block;
+    padding: 15px;
+    color: #0dcaf0;
+  }
+
+
   .clientes-carousel {
     padding: 0 10px; /* Asegura que el contenedor tenga el mismo espaciado en móvil */
   }
