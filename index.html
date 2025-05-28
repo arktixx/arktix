@@ -198,65 +198,76 @@
       font-size: 1.1rem;
     }
 
-    /* Estilos para el carrusel de clientes */
-    .clientes-carousel {
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
+/* Estilos para el carrusel de clientes */
+.clientes-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0 10px; /* Añadido para centrar mejor las tarjetas */
+  box-sizing: border-box;
+}
 
-    .clientes-track {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
+.clientes-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
 
-    .cliente-card {
-      flex: 0 0 25%; /* 4 tarjetas visibles en escritorio */
-      box-sizing: border-box;
-      padding: 10px;
-      text-align: center;
-      opacity: 1;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-width: 25%;
-      margin: 0 15px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center; /* centra verticalmente */
-      height: 100%; /* importante para el centrado vertical */
-      background-color: #111;
-      border: 1px solid #0dcaf0;
-      border-radius: 10px;
-    }
+.cliente-card {
+  flex: 0 0 25%; /* 4 tarjetas visibles en escritorio */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  opacity: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 25%;
+  margin: 0 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centra verticalmente */
+  height: 100%; /* importante para el centrado vertical */
+  background-color: #111;
+  border: 1px solid #0dcaf0;
+  border-radius: 10px;
+}
 
-    .cliente-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.cliente-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-    .cliente-card img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
+.cliente-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
 
-    .cliente-card p {
-      font-family: 'Exo 2', sans-serif;
-      color: #0dcaf0;
-    }
+.cliente-card p {
+  font-family: 'Exo 2', sans-serif;
+  color: #0dcaf0;
+}
 
-    /* Media query para modo móvil */
-    @media (max-width: 576px) {
-      .cliente-card {
-        flex: 0 0 100%; /* 1 tarjeta visible en móvil */
-        min-width: 100%;
-        margin: 0 10px; /* Margen reducido para centrar en móvil */
-      }
-    }
+/* Media query para modo móvil */
+@media (max-width: 576px) {
+  .clientes-carousel {
+    padding: 0 10px; /* Asegura que el contenedor tenga el mismo espaciado en móvil */
+  }
+
+  .clientes-track {
+    /* Asegura que el desplazamiento del carrusel sea suave */
+    transition: transform 0.5s ease;
+  }
+
+  .cliente-card {
+    flex: 0 0 calc(100% - 20px); /* Resta el margen total (10px izquierda + 10px derecha) */
+    min-width: calc(100% - 20px);
+    margin: 0 10px; /* Margen simétrico: 10px a cada lado */
+  }
+}
 
 /* Estilos para los modales */
 .modal-content {
