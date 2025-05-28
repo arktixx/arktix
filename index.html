@@ -357,30 +357,110 @@
     </div>
   </section>
 
-  <!-- Clientes -->
-  <section id="clientes" class="container py-5">
-    <h2 class="text-center fw-bold mb-5 fade-slide" data-delay="1">Nuestros Clientes</h2>
-    <div class="clientes-carousel">
-      <div class="clientes-track">
-        <div class="cliente-card">
-          <img src="img/cliente/img1.png" alt="Ferretería El Constructor">
-          <p>Ferretería El Constructor</p>
+<!-- Clientes -->
+<section id="clientes" class="container py-5">
+  <h2 class="text-center fw-bold mb-5 fade-slide" data-delay="1">Nuestros Clientes</h2>
+  <div class="clientes-carousel">
+    <div class="clientes-track">
+      <!-- Tarjeta 1 -->
+      <div class="cliente-card" data-bs-toggle="modal" data-bs-target="#modalCliente1">
+        <img src="img/cliente/img1.png" alt="Ferretería El Constructor">
+        <p>Ferretería El Constructor</p>
+      </div>
+      <!-- Tarjeta 2 -->
+      <div class="cliente-card" data-bs-toggle="modal" data-bs-target="#modalCliente2">
+        <img src="img/cliente/img2.png" alt="Panadería San Juan">
+        <p>Panadería San Juan</p>
+      </div>
+      <!-- Tarjeta 3 -->
+      <div class="cliente-card" data-bs-toggle="modal" data-bs-target="#modalCliente3">
+        <img src="img/cliente/img3.png" alt="Supermercado La Estrella">
+        <p>Supermercado La Estrella</p>
+      </div>
+      <!-- Tarjeta 4 -->
+      <div class="cliente-card" data-bs-toggle="modal" data-bs-target="#modalCliente4">
+        <img src="img/cliente/img4.png" alt="Café Delicia">
+        <p>Café Delicia</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 1 -->
+  <div class="modal fade" id="modalCliente1" tabindex="-1" aria-labelledby="modalCliente1Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCliente1Label">Ferretería El Constructor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="cliente-card">
-          <img src="img/cliente/img2.png" alt="Panadería San Juan">
-          <p>Panadería San Juan</p>
+        <div class="modal-body">
+          <img src="img/cliente/img1.png" alt="Ferretería El Constructor" class="img-fluid mb-3">
+          <p>Descripción del trabajo realizado: Diseñamos y desarrollamos un sitio web personalizado para Ferretería El Constructor, optimizando su catálogo de productos y mejorando la experiencia de usuario para sus clientes.</p>
         </div>
-        <div class="cliente-card">
-          <img src="img/cliente/img3.png" alt="Supermercado La Estrella">
-          <p>Supermercado La Estrella</p>
-        </div>
-        <div class="cliente-card">
-          <img src="img/cliente/img4.png" alt="Café Delicia">
-          <p>Café Delicia</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal fade" id="modalCliente2" tabindex="-1" aria-labelledby="modalCliente2Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCliente2Label">Panadería San Juan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="img/cliente/img2.png" alt="Panadería San Juan" class="img-fluid mb-3">
+          <p>Descripción del trabajo realizado: Creamos una plataforma de pedidos en línea para Panadería San Juan, integrando un sistema de reservas y pagos para facilitar la compra de sus productos frescos.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal fade" id="modalCliente3" tabindex="-1" aria-labelledby="modalCliente3Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCliente3Label">Supermercado La Estrella</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="img/cliente/img3.png" alt="Supermercado La Estrella" class="img-fluid mb-3">
+          <p>Descripción del trabajo realizado: Implementamos una solución de comercio electrónico completa para Supermercado La Estrella, con un sistema de gestión de inventario y entrega a domicilio.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4 -->
+  <div class="modal fade" id="modalCliente4" tabindex="-1" aria-labelledby="modalCliente4Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCliente4Label">Café Delicia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="img/cliente/img4.png" alt="Café Delicia" class="img-fluid mb-3">
+          <p>Descripción del trabajo realizado: Desarrollamos una página web moderna para Café Delicia, con un diseño atractivo y un sistema de reservas para eventos y promociones especiales.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Galería -->
   <section id="galeria" class="container py-5">
