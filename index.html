@@ -873,15 +873,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   const navbarToggler = document.querySelector(".navbar-toggler");
   const navbarCollapse = document.getElementById("navbarNav");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-  // Cerrar el menú al hacer clic en cualquier parte de la página
+  // Cerrar el menú al hacer clic en un enlace
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (event) {
+      if (window.innerWidth <= 991) { // Solo en modo responsivo
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
+    });
+  });
+
+  // Cerrar el menú al hacer clic fuera de él
   document.addEventListener("click", function (event) {
-    // Solo en modo responsivo (cuando el botón hamburguesa es visible)
-    if (window.innerWidth <= 991) { // 991px es el punto de corte de Bootstrap para navbar-expand-lg
+    if (window.innerWidth <= 991) { // Solo en modo responsivo
       const isClickInsideMenu = navbarCollapse.contains(event.target);
       const isClickOnToggler = navbarToggler.contains(event.target);
 
-      // Si el menú está abierto y el clic no está dentro del menú ni en el botón hamburguesa
       if (navbarCollapse.classList.contains("show") && !isClickInsideMenu && !isClickOnToggler) {
         const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
           toggle: false
