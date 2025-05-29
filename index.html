@@ -909,7 +909,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </script>
 
 <script>
-document.getElementById("btnEnviar").addEventListener("click", function() {
+document.getElementById("btnEnviar").addEventListener("click", function () {
   const nombre = document.getElementById("nombre").value.trim();
   const email = document.getElementById("email").value.trim();
   const mensaje = document.getElementById("mensaje").value.trim();
@@ -919,16 +919,25 @@ document.getElementById("btnEnviar").addEventListener("click", function() {
     return;
   }
 
-  const texto = `Hola, me llamo *${nombre}* (%0AEmail: ${email}) y quiero decir lo siguiente:%0A%0A${mensaje}`;
-  
-  // Número de WhatsApp al que enviar (código país + número, sin signos ni espacios)
-  const numeroWhatsApp = "56922265898"; // Cambia esto por el tuyo
-
+  const texto = `Hola, me llamo *${nombre}* \nEmail: ${email}\n\nQuiero decir lo siguiente:\n\n${mensaje}`;
+  const numeroWhatsApp = "56922265898"; // <-- Reemplázalo con tu número real
   const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
 
-  window.open(url, '_blank');
+  // Abrir WhatsApp en nueva pestaña
+  const nuevaVentana = window.open(url, '_blank');
+
+  // Intentar cerrar la ventana después de 1 segundo y mostrar mensaje
+  setTimeout(() => {
+    if (nuevaVentana) nuevaVentana.close(); // Solo funcionará si es del mismo origen, pero no afecta si falla
+    alert("¡Gracias por contactarnos! Te responderemos a la brevedad.");
+    // Limpiar formulario
+    document.getElementById("nombre").value = '';
+    document.getElementById("email").value = '';
+    document.getElementById("mensaje").value = '';
+  }, 1000);
 });
 </script>
+
 
 </body>
 </html>
