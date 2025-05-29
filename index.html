@@ -919,24 +919,41 @@ document.getElementById("btnEnviar").addEventListener("click", function () {
     return;
   }
 
-  const texto = `Hola, me llamo *${nombre}* \nEmail: ${email}\n\nQuiero decir lo siguiente:\n\n${mensaje}`;
-  const numeroWhatsApp = "56922265898"; // <-- Reemplázalo con tu número real
-  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+  const texto = `Hola, me llamo *${nombre}*\nEmail: ${email}\n\nQuiero decir lo siguiente:\n\n${mensaje}`;
+  const telefono = "56922265898";
+  const url = `https://api.whatsapp.com/send/?phone=${telefono}&text=${encodeURIComponent(texto)}&type=phone_number&app_absent=0`;
 
-  // Abrir WhatsApp en nueva pestaña
-  const nuevaVentana = window.open(url, '_blank');
+  // Abrir como popup grande (casi pantalla completa)
+  const width = screen.width * 0.9;
+  const height = screen.height * 0.9;
+  const left = (screen.width - width) / 2;
+  const top = (screen.height - height) / 2;
 
-  // Intentar cerrar la ventana después de 1 segundo y mostrar mensaje
+  const popup = window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
+
+  let windowHasFocus = true;
+
+  // Detectar pérdida de foco de la ventana principal
+  window.addEventListener('blur', () => {
+    windowHasFocus = false;
+  });
+
+  // Esperar 2 segundos y decidir si cerrar o no
   setTimeout(() => {
-    if (nuevaVentana) nuevaVentana.close(); // Solo funcionará si es del mismo origen, pero no afecta si falla
+    if (!windowHasFocus && popup && !popup.closed) {
+      // El usuario cambió de foco (probablemente abrió WhatsApp), cerramos popup
+      popup.close();
+    }
+
+    // Mostrar mensaje y limpiar
     alert("¡Gracias por contactarnos! Te responderemos a la brevedad.");
-    // Limpiar formulario
     document.getElementById("nombre").value = '';
     document.getElementById("email").value = '';
     document.getElementById("mensaje").value = '';
-  }, 1000);
+  }, 2000);
 });
 </script>
+
 
 
 </body>
