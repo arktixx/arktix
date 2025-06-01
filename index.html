@@ -14,6 +14,7 @@ body {
   color: #fff;
 }
 
+
 /* Estilos para el slider de galería */
 .slider-container {
   position: relative;
@@ -34,9 +35,8 @@ body {
 .slide-container {
   position: relative;
   min-width: 100%;
-  height: auto; /* Adapt to content height */
-  min-height: 500px; /* Minimum height to ensure space for content */
-  overflow: hidden; /* Prevent overflow */
+  height: 500px; /* Adapt to content height including text */
+  overflow: visible; /* Allow content to flow naturally */
 }
 
 .slide-blur-bg {
@@ -54,8 +54,7 @@ body {
 
 .slide {
   width: 100%;
-  height: auto; /* Adapt to image height */
-  min-height: 500px; /* Minimum height to match container */
+  height: 500px; /* Adapt to image height */
   object-fit: fill; /* Stretch to fill container */
   display: block;
   position: relative;
@@ -77,51 +76,41 @@ body {
   padding: 15px;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
-  z-index: 2; /* Above image and blur */
+  z-index: 2; /* Above image and blur, kept for potential future use */
 }
 
+/* Remove old overlay styles since we're not using them */
 .slide-overlay-content {
-  display: block; /* Re-enable since we're using it again */
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+  display: none; /* Not used anymore, text moved to slide-text-content */
+}
+
+/* New class for text content below image */
+.slide-text-content {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6); /* Optional background for readability */
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
   color: #fff;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Title at the top */
-.slide-overlay-content h3 {
-  position: absolute;
-  top: 20px; /* Adjusted for spacing */
-  left: 50%;
-  transform: translateX(-50%);
+.slide-text-content h3 {
   margin: 0;
   font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
   padding: 5px 15px;
-  border-radius: 5px;
 }
 
-/* Description at the bottom */
-.slide-overlay-content p {
-  position: absolute;
-  bottom: 20px; /* Adjusted for spacing */
-  left: 50%;
-  transform: translateX(-50%);
+.slide-text-content p {
   margin: 0;
   font-size: 1rem;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
   padding: 5px 15px;
-  border-radius: 5px;
-  white-space: normal; /* Ensure text wraps if too long */
-  max-width: 90%; /* Prevent overflow beyond container */
+  white-space: normal; /* Ensure text wraps */
+  max-width: 90%; /* Prevent overflow */
+  margin-left: auto;
+  margin-right: auto; /* Center the text block */
+  /* No position property used, flows naturally */
 }
 
-/* Remove slide-text-content since we're overlaying text now */
-.slide-text-content {
-  display: none; /* Not used anymore */
-}
 
 .modal-body img {
   max-width: 100%;
@@ -932,6 +921,23 @@ section, header, footer {
       </div>
     </div>
   </div>
+
+    <div class="slider-controls">
+        <button onclick="prevSlide()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Anterior
+        </button>
+        <span id="slide-indicator">1 de 4</span>
+        <button onclick="nextSlide()">
+          Siguiente
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
 </section>
 
   <!-- Contacto -->
