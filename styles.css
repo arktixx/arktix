@@ -1,121 +1,219 @@
-/* estilos.css */
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
 
-body {
-  font-family: 'Lato', sans-serif;
-  background-color: #000;
-  color: #fff;
-}
+    .modal-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
 
-section, header, footer {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem 0;
-}
+    .cliente-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
 
-.hero {
-  background-size: cover;
-  background-position: center;
-}
 
-.fade-slide {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+    section, header, footer {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 0;
+    }
 
-.fade-slide.show {
-  opacity: 1;
-  transform: translateX(0);
-}
+    .hero {
+      background-size: cover;
+      background-position: center;
+    }
 
-.fade-slide[data-delay="1"] { transition-delay: 0.1s; }
-.fade-slide[data-delay="2"] { transition-delay: 0.2s; }
-.fade-slide[data-delay="3"] { transition-delay: 0.3s; }
-.fade-slide[data-delay="4"] { transition-delay: 0.4s; }
+    .paquete, .servicio-card, .cliente-card {
+      background-color: #111;
+      border: 1px solid #0dcaf0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-/* ---- Slider Galería ---- */
-.slider-container {
-  position: relative;
-  max-width: 90%;
-  margin: 0 auto;
-  overflow: hidden;
-  border: 4px solid transparent;
-  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
-}
+    .paquete:hover, .servicio-card:hover, .cliente-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(13, 202, 240, 0.5);
+    }
 
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+    .paquete h3, .servicio-card h5, .cliente-card p {
+      font-family: 'Exo 2', sans-serif;
+      color: #0dcaf0;
+    }
+
+    .paquete ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .paquete ul li::before {
+      content: "✔ ";
+      color: #0dcaf0;
+    }
+
+    .fade-slide {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-slide.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-slide[data-delay="1"] { transition-delay: 0.1s; }
+    .fade-slide[data-delay="2"] { transition-delay: 0.2s; }
+    .fade-slide[data-delay="3"] { transition-delay: 0.3s; }
+    .fade-slide[data-delay="4"] { transition-delay: 0.4s; }
+
+    /* Estilos para el slider de galería */
+    .slider-container {
+      position: relative;
+      max-width: 90%;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 4px solid transparent;
+      border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide-container {
+      position: relative;
+      min-width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .slide-blur-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(20px);
+      transform: scale(1.1);
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .slide {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      z-index: 1;
+      display: block;
+      margin: auto;
+    }
+
+
+    .slide:hover {
+      transform: scale(1.05);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      top: 0; /* Antes era bottom: 0 */
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .slide-overlay-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10; /* aseguramos que esté encima */
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      max-width: 90%;
+      color: #fff;
+      pointer-events: none; /* para que no bloquee clicks */
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
+
+    .slide-container:hover .slide-overlay {
+      opacity: 1;
+    }
+
+    .slider-controls {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 20px;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .slider-controls button {
+      background: #0dcaf0;
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .slider-controls button:hover {
+      background: #00bcd4;
+      transform: scale(1.1);
+    }
+
+    .slider-controls span {
+      font-family: 'Exo 2', sans-serif;
+      color: #fff;
+      font-size: 1.1rem;
+    }
 
 .slide-container {
   position: relative;
-  min-width: 100%;
-  height: 500px;
   overflow: hidden;
 }
 
 .slide-blur-bg,
 .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* conserva proporción */
+  height: auto;
+  object-fit: cover;
   display: block;
-  margin: 0 auto;
-}
-
-.slide-blur-bg {
-  filter: blur(20px);
-  transform: scale(1.05);
-  z-index: 0;
-  opacity: 0.6;
-}
-
-.slide {
-  z-index: 1;
-}
-
-.slide-overlay-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  max-width: 90%;
-  color: #fff;
-  pointer-events: none;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-}
-
-.slide-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.slide-container:hover .slide-overlay {
-  opacity: 1;
 }
 
 .fallback,
@@ -123,49 +221,12 @@ section, header, footer {
   display: none;
 }
 
-/* ---- Slider Controls ---- */
-.slider-controls {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 20px;
-  border-radius: 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.slider-controls button {
-  background: #0dcaf0;
-  border: none;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.slider-controls button:hover {
-  background: #00bcd4;
-  transform: scale(1.1);
-}
-
-.slider-controls span {
-  font-family: 'Exo 2', sans-serif;
-  color: #fff;
-  font-size: 1.1rem;
-}
-
-/* ---- Clientes ---- */
+/* Estilos para el carrusel de clientes */
 .clientes-carousel {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 10px; /* Añadido para centrar mejor las tarjetas */
   box-sizing: border-box;
 }
 
@@ -175,18 +236,21 @@ section, header, footer {
 }
 
 .cliente-card {
-  flex: 0 0 25%;
+  flex: 0 0 25%; /* 4 tarjetas visibles en escritorio */
   box-sizing: border-box;
-  padding: 20px;
+  padding: 20px; /* Padding base para escritorio */
   text-align: center;
   opacity: 1;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 25%;
   margin: 0 15px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* centra verticalmente */
+  height: 100%; /* importante para el centrado vertical */
   background-color: #111;
   border: 1px solid #0dcaf0;
   border-radius: 10px;
@@ -208,27 +272,12 @@ section, header, footer {
 .cliente-card p {
   font-family: 'Exo 2', sans-serif;
   color: #0dcaf0;
-  font-size: 1rem;
+  font-size: 1rem; /* Tamaño base para escritorio */
   margin: 0;
 }
 
-/* ---- Navegación ---- */
-.navbar {
-  background-color: #000 !important;
-  border-bottom: 1px solid #0dcaf0;
-}
-
-.navbar-brand, .nav-link {
-  color: #0dcaf0 !important;
-  font-family: 'Exo 2', sans-serif;
-}
-
-.nav-link:hover {
-  color: #00bcd4 !important;
-}
-
 .menu-toggle {
-  display: none;
+  display: none; /* Oculto en escritorio */
   background: none;
   border: none;
   font-size: 24px;
@@ -255,14 +304,31 @@ section, header, footer {
   margin: 0 15px;
 }
 
-/* ---- Responsive ---- */
+/* Ocultar versión móvil por defecto */
+.slide-mobile {
+  display: none;
+}
+
+/* Mostrar versión móvil si el ancho es 576px o menos */
+@media (max-width: 576px) {
+  .slide-desktop {
+    display: none;
+  }
+
+  .slide-mobile {
+    display: block;
+  }
+}
+
+
+/* Media query para modo móvil */
 @media (max-width: 576px) {
   .menu-toggle {
-    display: block;
+    display: block; /* Visible en móvil */
   }
 
   .menu {
-    display: none;
+    display: none; /* Oculto por defecto en móvil */
     position: fixed;
     top: 0;
     left: 0;
@@ -274,7 +340,7 @@ section, header, footer {
   }
 
   .menu.active {
-    display: block;
+    display: block; /* Mostrado cuando tiene la clase .active */
   }
 
   .menu ul {
@@ -284,35 +350,147 @@ section, header, footer {
   .menu ul li a {
     display: block;
     padding: 15px;
+    color: #0dcaf0;
   }
 
-  .slide-desktop {
-    display: none;
+
+  .clientes-carousel {
+    padding: 0 10px; /* Asegura que el contenedor tenga el mismo espaciado en móvil */
   }
 
-  .slide-mobile {
-    display: block;
+  .clientes-track {
+    transition: transform 0.5s ease;
   }
 
   .cliente-card {
-    flex: 0 0 calc(100% - 20px);
+    flex: 0 0 calc(100% - 20px); /* Resta el margen total (10px izquierda + 10px derecha) */
     min-width: calc(100% - 20px);
-    margin: 0 10px;
-    padding: 30px 20px;
-    min-height: 300px;
+    margin: 0 10px; /* Margen simétrico: 10px a cada lado */
+    padding: 30px 20px; /* Más padding vertical para hacer la tarjeta más larga */
+    min-height: 300px; /* Altura mínima para que la tarjeta sea más larga */
   }
 
   .cliente-card img {
-    width: 120px;
+    width: 120px; /* Logo más grande en móvil */
     height: 120px;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Más espacio debajo del logo */
   }
 
   .cliente-card p {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* Título más grande en móvil */
   }
+  
+}
+/* Estilos para los modales */
+.modal-content {
+  background-color: #000;
+  border: 1px solid #0dcaf0;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
 }
 
+.modal-header {
+  border-bottom: 1px solid #0dcaf0;
+}
+
+.modal-title {
+  color: #0dcaf0;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.modal-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.modal-logo {
+  width: 100px; /* Más grande */
+  height: 100px; /* Más grande */
+  object-fit: cover;
+  border-radius: 50%; /* Mantiene la forma circular */
+  overflow: hidden;
+  border: 2px solid #0dcaf0; /* Opcional: le da un borde bonito */
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+
+.modal-text {
+  flex: 1;
+  color: #fff;
+}
+
+.modal-text p {
+  margin: 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #0dcaf0;
+}
+
+.btn-custom {
+  background-color: #0dcaf0;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-family: 'Exo 2', sans-serif;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover {
+  background-color: #00bcd4;
+  transform: scale(1.1);
+}
+
+.btn-close {
+  background: transparent;
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+/* Estilo del navbar */
+.navbar {
+  background-color: #000 !important;
+  border-bottom: 1px solid #0dcaf0;
+}
+
+.navbar-brand, .nav-link {
+  color: #0dcaf0 !important;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.nav-link:hover {
+  color: #00bcd4 !important;
+}
+
+/* Overlay del menú */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1040; /* Justo por debajo del navbar y el colapsable */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  cursor: pointer;
+}
+
+/* Se muestra solo cuando el navbar está expandido */
+.navbar-collapse.show ~ .menu-overlay {
+  display: block;
+}
+
+/* Asegurar que el menú colapsable tenga un fondo y estilo en móvil */
 @media (max-width: 991px) {
   .navbar-collapse {
     background-color: #111;
@@ -330,12 +508,12 @@ section, header, footer {
   }
 }
 
-/* Otros ajustes */
+/* Añadir margen superior a los títulos de las secciones */
 #paquetes h2,
 #servicios h2 {
-  margin-top: 80px;
+  margin-top: 80px; /* Ajusta según la altura del navbar */
 }
 
 #galeria h2 {
-  margin-top: 50px;
+  margin-top: 50px; /* Ajusta según la altura del navbar */
 }
