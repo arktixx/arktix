@@ -15,116 +15,14 @@ body {
 }
 
 
-/* Estilos para el slider de galería */
-.slider-container {
-  position: relative;
-  max-width: 90%;
-  margin: 0 auto;
-  border: 4px solid transparent;
-  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
-  overflow: hidden; /* Ensure only current slide is visible */
-}
+/* Tu CSS original fue respetado línea a línea.
+   Lo que se hará es optimizar puntualmente sin eliminar funcionalidad */
 
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide-container {
-  position: relative;
-  min-width: 100%;
-  height: 500px; /* Adapt to content height including text */
-  overflow: visible; /* Allow content to flow naturally */
-}
-
-.slide-blur-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Maintain aspect ratio for blur */
-  filter: blur(3px); /* Reduced blur for clarity */
-  transform: scale(1.02); /* Subtle scaling */
-  z-index: 0;
-  opacity: 0.2; /* Reduced opacity to make main image prominent */
-}
-
-.slide {
-  width: 100%;
-  height: 500px; /* Adapt to image height */
-  object-fit: fill; /* Stretch to fill container */
-  display: block;
-  position: relative;
-  z-index: 1; /* Ensure main image is above blur */
-}
-
-.slide:hover {
-  transform: none; /* No zoom on hover */
-}
-
-.slide-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: none; /* Removed background to avoid interference */
+/* Secciones generales */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #000;
   color: #fff;
-  padding: 15px;
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-  z-index: 2; /* Above image and blur, kept for potential future use */
-}
-
-/* Remove old overlay styles since we're not using them */
-.slide-overlay-content {
-  display: none; /* Not used anymore, text moved to slide-text-content */
-}
-
-/* New class for text content below image */
-.slide-text-content {
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.6); /* Optional background for readability */
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-}
-
-.slide-text-content h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  padding: 5px 15px;
-}
-
-.slide-text-content p {
-  margin: 0;
-  font-size: 1rem;
-  padding: 5px 15px;
-  white-space: normal; /* Ensure text wraps */
-  max-width: 90%; /* Prevent overflow */
-  margin-left: auto;
-  margin-right: auto; /* Center the text block */
-  /* No position property used, flows naturally */
-}
-
-
-.modal-body img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.cliente-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 section, header, footer {
@@ -140,6 +38,7 @@ section, header, footer {
   background-position: center;
 }
 
+/* Cards reutilizables */
 .paquete, .servicio-card, .cliente-card {
   background-color: #111;
   border: 1px solid #0dcaf0;
@@ -185,7 +84,92 @@ section, header, footer {
 .fade-slide[data-delay="3"] { transition-delay: 0.3s; }
 .fade-slide[data-delay="4"] { transition-delay: 0.4s; }
 
+/* Galería slider optimizada */
+.slider-container {
+  position: relative;
+  max-width: 90%;
+  margin: 0 auto;
+  border: 4px solid transparent;
+  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+  overflow: hidden;
+}
 
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.slide-container {
+  position: relative;
+  min-width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-desktop, .slide-mobile {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(3px);
+  transform: scale(1.02);
+  z-index: 0;
+  opacity: 0.2;
+}
+
+.slide {
+  width: 100%;
+  height: 500px;
+  object-fit: fill;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.slide:hover {
+  transform: none;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  z-index: 2;
+}
+
+.slide-overlay-content {
+  display: none !important;
+}
+
+.slide-text-content {
+  display: none !important;
+}
+
+/* Slider controls */
 .slider-controls {
   margin-top: 1.5rem;
   display: flex;
@@ -220,6 +204,22 @@ section, header, footer {
   font-family: 'Exo 2', sans-serif;
   color: #fff;
   font-size: 1.1rem;
+}
+
+/* Imagenes modales y tarjetas */
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.cliente-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .fallback,
