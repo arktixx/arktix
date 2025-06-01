@@ -156,6 +156,21 @@
       border-top-right-radius: 15px;
     }
 
+    .slide-overlay-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10; /* aseguramos que esté encima */
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      max-width: 90%;
+      color: #fff;
+      pointer-events: none; /* para que no bloquee clicks */
+      text-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+
 
     .slide-container:hover .slide-overlay {
       opacity: 1;
@@ -197,6 +212,24 @@
       color: #fff;
       font-size: 1.1rem;
     }
+
+.slide-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-blur-bg,
+.slide {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.fallback,
+.fallback-bg {
+  display: none;
+}
 
 /* Estilos para el carrusel de clientes */
 .clientes-carousel {
