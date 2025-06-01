@@ -36,7 +36,6 @@ body {
   position: relative;
   min-width: 100%;
   height: 500px; /* Adapt to content height including text */
-  min-height: 550px; /* Minimum height to ensure space for image and text */
   overflow: visible; /* Allow content to flow naturally */
 }
 
@@ -56,7 +55,6 @@ body {
 .slide {
   width: 100%;
   height: 500px; /* Adapt to image height */
-  min-height: 400px; /* Minimum height for image, text will add more */
   object-fit: fill; /* Stretch to fill container */
   display: block;
   position: relative;
@@ -763,21 +761,30 @@ section, header, footer {
     <div class="slider-container fade-slide" data-delay="2">
       <div class="slider">
 
-    <div class="slide-container">
-      <div class="slide-overlay">Arktix</div>
+    <!--  AQUI COMIENZA -->
+      <div class="slide-container">
+        <div class="slide-overlay">Arktix</div>
 
-      <!-- Escritorio -->
-      <div class="slide-desktop">
-        <img class="slide-blur-bg" src="img/img_0.png" alt="Arktix">
-        <img class="slide" src="img/img_0.png" alt="Arktix">
+        <!-- Escritorio -->
+        <div class="slide-desktop">
+          <img class="slide-blur-bg" src="img/img_0.png" alt="Arktix">
+          <img class="slide" src="img/img_0.png" alt="Arktix">
+        </div>
+
+        <!-- Móvil -->
+        <div class="slide-mobile">
+          <img class="slide-blur-bg" src="img/img_0m.png" alt="Arktix">
+          <img class="slide" src="img/img_0m.png" alt="Arktix">
+        </div>
       </div>
 
-      <!-- Móvil -->
-      <div class="slide-mobile">
-        <img class="slide-blur-bg" src="img/img_0m.png" alt="Arktix">
-        <img class="slide" src="img/img_0m.png" alt="Arktix">
+        <!-- Title and Description below the image -->
+        <div class="slide-text-content text-white text-center">
+          <h3 class="fw-bold mb-2">ARKTIX</h3>
+          <p class="mb-0">Soluciones sólidas, resultados confiables</p>
+        </div>
       </div>
-    </div>
+    <!--  AQUI TERMINA -->
 
       <div class="slide-container">
         <div class="slide-overlay">
