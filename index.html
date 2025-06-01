@@ -14,6 +14,112 @@ body {
   color: #fff;
 }
 
+
+/* Estilos para el slider de galería */
+.slider-container {
+  position: relative;
+  max-width: 90%;
+  margin: 0 auto;
+  border: 4px solid transparent;
+  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+  overflow: hidden; /* Ensure only current slide is visible */
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-container {
+  position: relative;
+  min-width: 100%;
+  height: auto; /* Adapt to content height */
+  min-height: 550px; /* Increased from 500px to ensure space for description */
+  overflow: visible; /* Changed from hidden to allow content to show */
+}
+
+.slide-blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio for blur */
+  filter: blur(3px); /* Reduced blur for clarity */
+  transform: scale(1.02); /* Subtle scaling */
+  z-index: 0;
+  opacity: 0.2; /* Reduced opacity to make main image prominent */
+}
+
+.slide {
+  width: 100%;
+  height: auto; /* Adapt to image height */
+  min-height: 550px; /* Match container min-height */
+  object-fit: fill; /* Stretch to fill container */
+  display: block;
+  position: relative;
+  z-index: 1; /* Ensure main image is above blur */
+}
+
+.slide:hover {
+  transform: none; /* No zoom on hover */
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none; /* Removed background to avoid interference */
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  z-index: 2; /* Above image and blur */
+}
+
+.slide-overlay-content {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+/* Title at the top */
+.slide-overlay-content h3,
+.slide-overlay-content h4 {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+/* Description at the bottom */
+.slide-overlay-content p {
+  position: absolute;
+  bottom: 20px; /* Increased from 10px to give more space */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+  border-radius: 5px;
+  white-space: normal; /* Ensure text wraps if too long */
+  max-width: 90%; /* Prevent overflow beyond container */
+  overflow: visible; /* Ensure text is not clipped */
+}
+
+
 .modal-body img {
   max-width: 100%;
   height: auto;
@@ -87,108 +193,6 @@ section, header, footer {
 .fade-slide[data-delay="3"] { transition-delay: 0.3s; }
 .fade-slide[data-delay="4"] { transition-delay: 0.4s; }
 
-/* Estilos para el slider de galería */
-.slider-container {
-  position: relative;
-  max-width: 90%;
-  margin: 0 auto;
-  border: 4px solid transparent;
-  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
-  overflow: hidden; /* Ensure only current slide is visible */
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide-container {
-  position: relative;
-  min-width: 100%;
-  height: 500px; /* Changed from 500px to auto to adapt to content */
-  min-height: 500px; /* Minimum height to ensure space for content */
-  overflow: hidden; /* Prevent adjacent slides from showing */
-}
-
-.slide-blur-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Maintain aspect ratio for blur */
-  filter: blur(3px); /* Reduced blur for clarity */
-  transform: scale(1.02); /* Subtle scaling */
-  z-index: 0;
-  opacity: 0.2; /* Reduced opacity to make main image prominent */
-}
-
-.slide {
-  width: 100%;
-  height: 500px; /* Changed from 500px to auto to adapt to image */
-  min-height: 500px; /* Minimum height to match container */
-  object-fit: fill; /* Stretch to fill container */
-  display: block;
-  position: relative;
-  z-index: 1; /* Ensure main image is above blur */
-}
-
-.slide:hover {
-  transform: none; /* No zoom on hover */
-}
-
-.slide-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: none; /* Removed background to avoid interference */
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  font-family: 'Exo 2', sans-serif;
-  z-index: 2; /* Above image and blur */
-}
-
-.slide-overlay-content {
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0,0,0,0.8);
-}
-
-/* Title at the top */
-.slide-overlay-content h3,
-.slide-overlay-content h4 {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 5px 15px;
-  border-radius: 5px;
-}
-
-/* Description at the bottom */
-.slide-overlay-content p {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  font-size: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 5px 15px;
-  border-radius: 5px;
-  white-space: normal; /* Ensure text wraps if too long */
-  max-width: 90%; /* Prevent overflow beyond container */
-}
 
 .slider-controls {
   margin-top: 1.5rem;
