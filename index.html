@@ -35,9 +35,9 @@ body {
 .slide-container {
   position: relative;
   min-width: 100%;
-  height: auto; /* Adapt to content height */
-  min-height: 550px; /* Increased from 500px to ensure space for description */
-  overflow: visible; /* Changed from hidden to allow content to show */
+  height: 500px; /* Adapt to content height including text */
+  min-height: 550px; /* Minimum height to ensure space for image and text */
+  overflow: visible; /* Allow content to flow naturally */
 }
 
 .slide-blur-bg {
@@ -55,8 +55,8 @@ body {
 
 .slide {
   width: 100%;
-  height: auto; /* Adapt to image height */
-  min-height: 550px; /* Match container min-height */
+  height: 500px; /* Adapt to image height */
+  min-height: 400px; /* Minimum height for image, text will add more */
   object-fit: fill; /* Stretch to fill container */
   display: block;
   position: relative;
@@ -78,45 +78,39 @@ body {
   padding: 15px;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
-  z-index: 2; /* Above image and blur */
+  z-index: 2; /* Above image and blur, kept for potential future use */
 }
 
+/* Remove old overlay styles since we're not using them */
 .slide-overlay-content {
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0,0,0,0.8);
+  display: none; /* Not used anymore, text moved to slide-text-content */
 }
 
-/* Title at the top */
-.slide-overlay-content h3,
-.slide-overlay-content h4 {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+/* New class for text content below image */
+.slide-text-content {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6); /* Optional background for readability */
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.slide-text-content h3 {
   margin: 0;
   font-size: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
   padding: 5px 15px;
-  border-radius: 5px;
 }
 
-/* Description at the bottom */
-.slide-overlay-content p {
-  position: absolute;
-  bottom: 20px; /* Increased from 10px to give more space */
-  left: 50%;
-  transform: translateX(-50%);
+.slide-text-content p {
   margin: 0;
   font-size: 1rem;
-  background: rgba(0, 0, 0, 0.6);
   padding: 5px 15px;
-  border-radius: 5px;
-  white-space: normal; /* Ensure text wraps if too long */
-  max-width: 90%; /* Prevent overflow beyond container */
-  overflow: visible; /* Ensure text is not clipped */
+  white-space: normal; /* Ensure text wraps */
+  max-width: 90%; /* Prevent overflow */
+  margin-left: auto;
+  margin-right: auto; /* Center the text block */
+  /* No position property used, flows naturally */
 }
 
 
