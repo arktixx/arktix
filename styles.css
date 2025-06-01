@@ -201,12 +201,14 @@
 
 .slide {
   height: 100%;
-  width: auto; /* permite que el ancho se ajuste proporcionalmente */
+  width: 100%; /* permite que el ancho se ajuste proporcionalmente */
   object-fit: contain; /* asegura que no se recorte ni se deforme */
-  display: block;
+  display: flex;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
 }
 
 
