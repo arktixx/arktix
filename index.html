@@ -155,6 +155,76 @@ section, header, footer {
 .fade-slide[data-delay="4"] { transition-delay: 0.4s; }
 
 /* Galería slider optimizada */
+/* Tu CSS original fue respetado línea a línea.
+   Lo que se hará es optimizar puntualmente sin eliminar funcionalidad */
+
+/* Secciones generales */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+section, header, footer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.hero {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Cards reutilizables */
+.paquete, .servicio-card, .cliente-card {
+  background-color: #111;
+  border: 1px solid #0dcaf0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paquete:hover, .servicio-card:hover, .cliente-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(13, 202, 240, 0.5);
+}
+
+.paquete h3, .servicio-card h5, .cliente-card p {
+  font-family: 'Exo 2', sans-serif;
+  color: #0dcaf0;
+}
+
+.paquete ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.paquete ul li::before {
+  content: "✔ ";
+  color: #0dcaf0;
+}
+
+.fade-slide {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-slide.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-slide[data-delay="1"] { transition-delay: 0.1s; }
+.fade-slide[data-delay="2"] { transition-delay: 0.2s; }
+.fade-slide[data-delay="3"] { transition-delay: 0.3s; }
+.fade-slide[data-delay="4"] { transition-delay: 0.4s; }
+
+/* Galería slider optimizada */
 .slider-container {
   position: relative;
   max-width: 90%;
@@ -225,19 +295,34 @@ section, header, footer {
   bottom: 0;
   background: none;
   color: #fff;
-  padding: 15px;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
   z-index: 2;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .slide-overlay-content {
-  display: block;
+  padding: 0 1rem;
 }
 
-.slide-text-content {
-  display: block;
+.slide-overlay-content h3 {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.slide-overlay-content p {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 /* Slider controls */
