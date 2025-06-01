@@ -107,7 +107,8 @@ section, header, footer {
 .slide-container {
   position: relative;
   min-width: 100%;
-  height: 500px; /* Adapt to content height */
+  height: auto; /* Changed from 500px to auto to adapt to content */
+  min-height: 500px; /* Minimum height to ensure space for content */
   overflow: hidden; /* Prevent adjacent slides from showing */
 }
 
@@ -126,7 +127,8 @@ section, header, footer {
 
 .slide {
   width: 100%;
-  height: 500px;
+  height: auto; /* Changed from 500px to auto to adapt to image */
+  min-height: 500px; /* Minimum height to match container */
   object-fit: fill; /* Stretch to fill container */
   display: block;
   position: relative;
@@ -184,6 +186,8 @@ section, header, footer {
   background: rgba(0, 0, 0, 0.6);
   padding: 5px 15px;
   border-radius: 5px;
+  white-space: normal; /* Ensure text wraps if too long */
+  max-width: 90%; /* Prevent overflow beyond container */
 }
 
 .slider-controls {
@@ -777,20 +781,6 @@ section, header, footer {
       </div>
     </div>
 
-
-<!--    
-        <div class="slide-container">
-          <div class="slide-overlay">Ofrecemos el Sistema POS</div>
-          <img class="slide-blur-bg" src="img/img1.png" alt="Ofrecemos el Sistema POS">
-          <img class="slide" src="img/img1.png" alt="Ofrecemos el Sistema POS">
-        </div> 
-
-        <div class="slide-container">
-          <div class="slide-overlay">Ofrecemos el Sistema POS</div>
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1.mp4" autoplay muted loop playsinline></video>
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1.mp4" autoplay muted loop playsinline></video>
-        </div> -->
-      
       <div class="slide-container">
         <div class="slide-overlay">
           <div class="slide-overlay-content text-white text-center">
@@ -812,87 +802,68 @@ section, header, footer {
         </div>
       </div>
 
-
-<!--    <div class="slide-container">
-          <div class="slide-overlay">Capacitamos para usar el Sistema POS</div>
-          <img class="slide-blur-bg" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
-          <img class="slide" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
-        </div> 
-
         <div class="slide-container">
-          <div class="slide-overlay">Capacitamos para usar el Sistema POS</div>
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_1.mp4" autoplay muted loop playsinline></video>
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_1.mp4" autoplay muted loop playsinline></video>
-        </div>  -->
+          <div class="slide-overlay">
+            <div class="slide-overlay-content text-white text-center">
+              <h3 class="fw-bold mb-2">Capacitamos para usar el Sistema POS</h3>
+              <p class="mb-0">Brindamos formación personalizada para que saques el máximo provecho de tu sistema.</p>
+            </div>
+          </div>
 
-        <div class="slide-container position-relative">
-          <img class="slide-blur-bg fallback-bg" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_1.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <img class="slide fallback" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_1.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <div class="slide-overlay-content text-white text-center">
-            <h3 class="fw-bold mb-2">Capacitamos para usar el Sistema POS</h3>
-            <p class="mb-0">Brindamos formación personalizada para que saques el máximo provecho de tu sistema.</p>
+          <!-- Escritorio -->
+          <div class="slide-desktop">
+            <img class="slide-blur-bg" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
+            <img class="slide" src="img/img1_1.png" alt="Capacitamos para usar el Sistema POS">
+          </div>
+
+          <!-- Móvil -->
+          <div class="slide-mobile">
+            <img class="slide-blur-bg" src="img/img1_1m.png" alt="Capacitamos para usar el Sistema POS">
+            <img class="slide" src="img/img1_1m.png" alt="Capacitamos para usar el Sistema POS">
           </div>
         </div>
 
 
-<!--    <div class="slide-container">
-          <div class="slide-overlay">Soporte para el Sistema POS</div>
-          <img class="slide-blur-bg" src="img/img1_2.png" alt="Soporte para el Sistema POS">
-          <img class="slide" src="img/img1_2.png" alt="Soporte para el Sistema POS">
-        </div> 
-
         <div class="slide-container">
-          <div class="slide-overlay">Soporte para el Sistema POS</div>
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_2.mp4" autoplay muted loop playsinline></video>
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_2.mp4" autoplay muted loop playsinline></video>
-        </div> -->
+          <div class="slide-overlay">
+            <div class="slide-overlay-content text-white text-center">
+              <h3 class="fw-bold mb-2">Soporte para el Sistema POS</h3>
+              <p class="mb-0">Te acompañamos en cada paso para asegurar que tu sistema funcione sin interrupciones.</p>
+            </div>
+          </div>
 
-        <div class="slide-container position-relative">
-          <img class="slide-blur-bg fallback-bg" src="img/img1_2.png" alt="Soporte para el Sistema POS">
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_2.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <img class="slide fallback" src="img/img1_2.png" alt="Soporte para el Sistema POS">
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_2.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <div class="slide-overlay-content text-white text-center">
-            <h3 class="fw-bold mb-2">Soporte para el Sistema POS</h3>
-            <p class="mb-0">Te acompañamos en cada paso para asegurar que tu sistema funcione sin interrupciones.</p>
+          <!-- Escritorio -->
+          <div class="slide-desktop">
+            <img class="slide-blur-bg" src="img/img1_2.png" alt="Soporte para el Sistema POS">
+            <img class="slide" src="img/img1_2.png" alt="Soporte para el Sistema POS">
+          </div>
+
+          <!-- Móvil -->
+          <div class="slide-mobile">
+            <img class="slide-blur-bg" src="img/img1_2m.png" alt="Soporte para el Sistema POS">
+            <img class="slide" src="img/img1_2m.png" alt="Soporte para el Sistema POS">
           </div>
         </div>
 
 
-<!--    <div class="slide-container">
-          <div class="slide-overlay">Su negocio con el Sistema POS</div>
-          <img class="slide-blur-bg" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
-          <img class="slide" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
-        </div> 
-
         <div class="slide-container">
-          <div class="slide-overlay">Su negocio con el Sistema POS</div>
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_3.mp4" autoplay muted loop playsinline></video>
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_3.mp4" autoplay muted loop playsinline></video>
-        </div> -->
+          <div class="slide-overlay">
+            <div class="slide-overlay-content text-white text-center">
+              <h3 class="fw-bold mb-2">Su negocio con el Sistema POS</h3>
+              <p class="mb-0">Moderniza la experiencia de venta y gestión con una solución que impulsa tu negocio.</p>
+            </div>
+          </div>
 
-        <div class="slide-container position-relative">
-          <img class="slide-blur-bg fallback-bg" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
-          <video class="slide-blur-bg" src="https://arktixx.github.io/arktix/img/img1_3.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <img class="slide fallback" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
-          <video class="slide" src="https://arktixx.github.io/arktix/img/img1_3.mp4" autoplay muted loop playsinline
-                onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
-          </video>
-          <div class="slide-overlay-content text-white text-center">
-            <h3 class="fw-bold mb-2">Su negocio con el Sistema POS</h3>
-            <p class="mb-0">Moderniza la experiencia de venta y gestión con una solución que impulsa tu negocio.</p>
+          <!-- Escritorio -->
+          <div class="slide-desktop">
+            <img class="slide-blur-bg" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
+            <img class="slide" src="img/img1_3.png" alt="Su negocio con el Sistema POS">
+          </div>
+
+          <!-- Móvil -->
+          <div class="slide-mobile">
+            <img class="slide-blur-bg" src="img/img1_3m.png" alt="Su negocio con el Sistema POS">
+            <img class="slide" src="img/img1_3m.png" alt="Su negocio con el Sistema POS">
           </div>
         </div>
 
