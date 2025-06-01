@@ -208,14 +208,6 @@
   overflow: hidden;
 }
 
-.slide-blur-bg,
-.slide {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
 .fallback,
 .fallback-bg {
   display: none;
