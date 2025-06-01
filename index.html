@@ -8,221 +8,202 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600&family=Lato&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
 
-    .modal-body img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #000;
+  color: #fff;
+}
 
-    .cliente-card img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
+.cliente-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
 
-    section, header, footer {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 2rem 0;
-    }
+section, header, footer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+}
 
-    .hero {
-      background-size: cover;
-      background-position: center;
-    }
+.hero {
+  background-size: cover;
+  background-position: center;
+}
 
-    .paquete, .servicio-card, .cliente-card {
-      background-color: #111;
-      border: 1px solid #0dcaf0;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.paquete, .servicio-card, .cliente-card {
+  background-color: #111;
+  border: 1px solid #0dcaf0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .paquete:hover, .servicio-card:hover, .cliente-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(13, 202, 240, 0.5);
-    }
+.paquete:hover, .servicio-card:hover, .cliente-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(13, 202, 240, 0.5);
+}
 
-    .paquete h3, .servicio-card h5, .cliente-card p {
-      font-family: 'Exo 2', sans-serif;
-      color: #0dcaf0;
-    }
+.paquete h3, .servicio-card h5, .cliente-card p {
+  font-family: 'Exo 2', sans-serif;
+  color: #0dcaf0;
+}
 
-    .paquete ul {
-      list-style: none;
-      padding-left: 0;
-    }
+.paquete ul {
+  list-style: none;
+  padding-left: 0;
+}
 
-    .paquete ul li::before {
-      content: "✔ ";
-      color: #0dcaf0;
-    }
+.paquete ul li::before {
+  content: "✔ ";
+  color: #0dcaf0;
+}
 
-    .fade-slide {
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
+.fade-slide {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
-    .fade-slide.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
+.fade-slide.show {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-    .fade-slide[data-delay="1"] { transition-delay: 0.1s; }
-    .fade-slide[data-delay="2"] { transition-delay: 0.2s; }
-    .fade-slide[data-delay="3"] { transition-delay: 0.3s; }
-    .fade-slide[data-delay="4"] { transition-delay: 0.4s; }
+.fade-slide[data-delay="1"] { transition-delay: 0.1s; }
+.fade-slide[data-delay="2"] { transition-delay: 0.2s; }
+.fade-slide[data-delay="3"] { transition-delay: 0.3s; }
+.fade-slide[data-delay="4"] { transition-delay: 0.4s; }
 
-    /* Estilos para el slider de galería */
-    .slider-container {
-      position: relative;
-      max-width: 90%;
-      margin: 0 auto;
-      overflow: hidden;
-      border: 4px solid transparent;
-      border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
-    }
+/* Estilos para el slider de galería */
+.slider-container {
+  position: relative;
+  max-width: 90%;
+  margin: 0 auto;
+  border: 4px solid transparent;
+  border-image: linear-gradient(to right, #0dcaf0, #00bcd4) 1;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+  overflow: visible; /* Cambiado a visible para evitar recortes */
+}
 
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .slide-container {
-      position: relative;
-      min-width: 100%;
-      height: 500px;
-      overflow: hidden;
-    }
-
-    .slide-blur-bg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: blur(20px);
-      transform: scale(1.1);
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    .slide {
-      position: relative;
-      max-width: 100%;
-      max-height: 100%;
-      z-index: 1;
-      display: flex;
-      margin: auto;
-    }
-
-
-    .slide:hover {
-      transform: scale(1.05);
-    }
-
-    .slide-overlay {
-      position: absolute;
-      top: 0; /* Antes era bottom: 0 */
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      font-family: 'Exo 2', sans-serif;
-      font-size: 1.2rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-    }
-
-    .slide-overlay-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10; /* aseguramos que esté encima */
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1.5rem 2rem;
-      border-radius: 12px;
-      max-width: 90%;
-      color: #fff;
-      pointer-events: none; /* para que no bloquee clicks */
-      text-shadow: 0 0 5px rgba(0,0,0,0.8);
-    }
-
-
-    .slide-container:hover .slide-overlay {
-      opacity: 1;
-    }
-
-    .slider-controls {
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 10px 20px;
-      border-radius: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-
-    .slider-controls button {
-      background: #0dcaf0;
-      border: none;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .slider-controls button:hover {
-      background: #00bcd4;
-      transform: scale(1.1);
-    }
-
-    .slider-controls span {
-      font-family: 'Exo 2', sans-serif;
-      color: #fff;
-      font-size: 1.1rem;
-    }
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
 .slide-container {
   position: relative;
-  overflow: hidden;
+  min-width: 100%;
+  height: auto; /* Cambiado a auto para adaptarse al contenido */
+  overflow: visible; /* Evitar recortes */
 }
 
 .slide-blur-bg,
 .slide {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: fill; /* Estira la imagen/video para llenar el contenedor */
   display: block;
+}
+
+.slide-blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(20px);
+  transform: scale(1.1);
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.slide:hover {
+  transform: none; /* Eliminado el zoom en hover */
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.slide-overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  max-width: 90%;
+  color: #fff;
+  pointer-events: none;
+  text-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+.slide-container:hover .slide-overlay {
+  opacity: 1;
+}
+
+.slider-controls {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.slider-controls button {
+  background: #0dcaf0;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.slider-controls button:hover {
+  background: #00bcd4;
+  transform: scale(1.1);
+}
+
+.slider-controls span {
+  font-family: 'Exo 2', sans-serif;
+  color: #fff;
+  font-size: 1.1rem;
 }
 
 .fallback,
@@ -235,7 +216,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 0 10px; /* Añadido para centrar mejor las tarjetas */
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
@@ -245,9 +226,9 @@
 }
 
 .cliente-card {
-  flex: 0 0 25%; /* 4 tarjetas visibles en escritorio */
+  flex: 0 0 25%;
   box-sizing: border-box;
-  padding: 20px; /* Padding base para escritorio */
+  padding: 20px;
   text-align: center;
   opacity: 1;
   cursor: pointer;
@@ -258,8 +239,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* centra verticalmente */
-  height: 100%; /* importante para el centrado vertical */
+  justify-content: center;
+  height: 100%;
   background-color: #111;
   border: 1px solid #0dcaf0;
   border-radius: 10px;
@@ -281,12 +262,12 @@
 .cliente-card p {
   font-family: 'Exo 2', sans-serif;
   color: #0dcaf0;
-  font-size: 1rem; /* Tamaño base para escritorio */
+  font-size: 1rem;
   margin: 0;
 }
 
 .menu-toggle {
-  display: none; /* Oculto en escritorio */
+  display: none;
   background: none;
   border: none;
   font-size: 24px;
@@ -327,17 +308,23 @@
   .slide-mobile {
     display: block;
   }
-}
 
+  .slide-mobile img,
+  .slide-mobile video {
+    width: 100%;
+    height: auto;
+    object-fit: fill; /* Estira la imagen/video en móviles */
+  }
+}
 
 /* Media query para modo móvil */
 @media (max-width: 576px) {
   .menu-toggle {
-    display: block; /* Visible en móvil */
+    display: block;
   }
 
   .menu {
-    display: none; /* Oculto por defecto en móvil */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -349,7 +336,7 @@
   }
 
   .menu.active {
-    display: block; /* Mostrado cuando tiene la clase .active */
+    display: block;
   }
 
   .menu ul {
@@ -362,9 +349,8 @@
     color: #0dcaf0;
   }
 
-
   .clientes-carousel {
-    padding: 0 10px; /* Asegura que el contenedor tenga el mismo espaciado en móvil */
+    padding: 0 10px;
   }
 
   .clientes-track {
@@ -372,24 +358,24 @@
   }
 
   .cliente-card {
-    flex: 0 0 calc(100% - 20px); /* Resta el margen total (10px izquierda + 10px derecha) */
+    flex: 0 0 calc(100% - 20px);
     min-width: calc(100% - 20px);
-    margin: 0 10px; /* Margen simétrico: 10px a cada lado */
-    padding: 30px 20px; /* Más padding vertical para hacer la tarjeta más larga */
-    min-height: 300px; /* Altura mínima para que la tarjeta sea más larga */
+    margin: 0 10px;
+    padding: 30px 20px;
+    min-height: 300px;
   }
 
   .cliente-card img {
-    width: 120px; /* Logo más grande en móvil */
+    width: 120px;
     height: 120px;
-    margin-bottom: 15px; /* Más espacio debajo del logo */
+    margin-bottom: 15px;
   }
 
   .cliente-card p {
-    font-size: 1.25rem; /* Título más grande en móvil */
+    font-size: 1.25rem;
   }
-  
 }
+
 /* Estilos para los modales */
 .modal-content {
   background-color: #000;
@@ -415,18 +401,16 @@
 }
 
 .modal-logo {
-  width: 100px; /* Más grande */
-  height: 100px; /* Más grande */
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 50%; /* Mantiene la forma circular */
-  overflow: hidden;
-  border: 2px solid #0dcaf0; /* Opcional: le da un borde bonito */
+  border-radius: 50%;
+  border: 2px solid #0dcaf0;
   background: none;
   padding: 0;
   margin: 0;
   display: block;
 }
-
 
 .modal-text {
   flex: 1;
@@ -489,8 +473,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1040; /* Justo por debajo del navbar y el colapsable */
-  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  z-index: 1040;
+  background-color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
 }
 
@@ -520,11 +504,11 @@
 /* Añadir margen superior a los títulos de las secciones */
 #paquetes h2,
 #servicios h2 {
-  margin-top: 80px; /* Ajusta según la altura del navbar */
+  margin-top: 80px;
 }
 
 #galeria h2 {
-  margin-top: 50px; /* Ajusta según la altura del navbar */
+  margin-top: 50px;
 }
   </style>
 </head>
