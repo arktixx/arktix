@@ -107,7 +107,7 @@ section, header, footer {
 .slide-container {
   position: relative;
   min-width: 100%;
-  height: 503px; /* Adapt to content height */
+  height: 500px; /* Adapt to content height */
   overflow: hidden; /* Prevent adjacent slides from showing */
 }
 
@@ -126,7 +126,7 @@ section, header, footer {
 
 .slide {
   width: 100%;
-  height: 503px;
+  height: 500px;
   object-fit: fill; /* Stretch to fill container */
   display: block;
   position: relative;
@@ -142,35 +142,48 @@ section, header, footer {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  background: none; /* Removed background to avoid interference */
   color: #fff;
   padding: 15px;
   text-align: center;
   font-family: 'Exo 2', sans-serif;
-  font-size: 1.2rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  z-index: 2; /* Above image and blur */
 }
 
 .slide-overlay-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  max-width: 90%;
   color: #fff;
-  pointer-events: none;
   text-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
 
-.slide-container:hover .slide-overlay {
-  opacity: 1;
+/* Title at the top */
+.slide-overlay-content h3,
+.slide-overlay-content h4 {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+/* Description at the bottom */
+.slide-overlay-content p {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 
 .slider-controls {
