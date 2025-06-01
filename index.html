@@ -314,6 +314,23 @@
   margin: 0 15px;
 }
 
+/* Ocultar versión móvil por defecto */
+.slide-mobile {
+  display: none;
+}
+
+/* Mostrar versión móvil si el ancho es 576px o menos */
+@media (max-width: 576px) {
+  .slide-desktop {
+    display: none;
+  }
+
+  .slide-mobile {
+    display: block;
+  }
+}
+
+
 /* Media query para modo móvil */
 @media (max-width: 576px) {
   .menu-toggle {
@@ -745,11 +762,22 @@
     <div class="slider-container fade-slide" data-delay="2">
       <div class="slider">
 
-        <div class="slide-container">
-          <div class="slide-overlay">Arktix</div>
-          <img class="slide-blur-bg" src="img/img_0m.png" alt="Arktix">
-          <img class="slide" src="img/img_0m.png" alt="Arktix">
-        </div> 
+    <div class="slide-container">
+      <div class="slide-overlay">Arktix</div>
+
+      <!-- Escritorio -->
+      <div class="slide-desktop">
+        <img class="slide-blur-bg" src="img/img_0.png" alt="Arktix">
+        <img class="slide" src="img/img_0.png" alt="Arktix">
+      </div>
+
+      <!-- Móvil -->
+      <div class="slide-mobile">
+        <img class="slide-blur-bg" src="img/img_0m.png" alt="Arktix">
+        <img class="slide" src="img/img_0m.png" alt="Arktix">
+      </div>
+    </div>
+
 
 <!--    
         <div class="slide-container">
